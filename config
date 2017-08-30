@@ -1,0 +1,11 @@
+#Config file created on: 20130921.2228 by automation script
+targetip1="10.16.13.22"
+targetip2="10.16.13.23"
+ports="80 25 443"
+
+
+adapter="eth0"
+ipaddress="192.168.1.123"
+netmask="255.255.255.0"
+gateway="192.168.1.1"
+nameservers="192.168.1.1 8.8.8.8"
