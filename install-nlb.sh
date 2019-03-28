@@ -13,11 +13,8 @@ if [[ "$EUID" != "0" ]]; then
     SUDO='sudo'
 fi
 
-echo "Checking and installing dependencies..."
-chkdialog=`which dialog | wc -l`
-chkbalance=`which balance | wc -l`
-if [ "$chkdialog" = "0" ]; then $SUDO apt-get -y install dialog ;  fi
-if [ "$chkbalance" = "0" ]; then $SUDO apt-get -y install balance ; fi
+echo "Installing dependencies..."
+$SUDO apt-get -y install dialog balance 
 
 
 echo "Installing GLLB..."
