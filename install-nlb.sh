@@ -10,7 +10,8 @@ read -p "Press ENTER to continue..." DUMMY
 
 SUDO=''
 if [ "$EUID" != "0" ]; then
-    SUDO='sudo'
+    echo "Please run as root."
+    exit 1
 fi
 
 echo "Installing dependencies..."
