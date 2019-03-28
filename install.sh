@@ -28,10 +28,8 @@ SUDO='sudo'
 fi
 
 read -p "Enter download location (default: $PWD): " DLOCATION
-if [ "$DLOCATION"=="" ]; then
-    DLOCATION=$PWD
-    else
-    $SUDO mkdir -p $DLOCATION
+if [ ! "$DLOCATION"=="" ]; then
+    $SUDO mkdir -p $DLOCATION 
 fi
 
 git clone $GITURL $DLOCATION

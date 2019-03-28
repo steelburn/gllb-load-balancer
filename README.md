@@ -6,13 +6,17 @@
 
 REQUIREMENTS
 -----------
-1. 	Basic Debian installation. Please use Network install CD (http://www.debian.org/CD/netinst/) for smaller footprint. 
+1. 	Basic Debian installation. Please use Network install CD (http://www.debian.org/CD/netinst/) for smaller footprint. Other distro is not supported.
 	The most you need is just 'SSH Server' package so that you can SCP the GLLB package.
 2.	Minimum 1GB hard disk space. Recommended: 10GB.
 3.	Minimum 512MB RAM. Recommended: At least 1GB.
 
+## QUICK: HOW TO INSTALL
+--------------
+Run this in terminal: wget https://raw.githubusercontent.com/steelburn/gllb-load-balancer/master/install.sh && bash ./install.sh
 
-HOW TO INSTALL
+
+## LONGER: HOW TO INSTALL
 --------------
 1. Copy GLLB package into the server. 
 2. Unpack the package.
