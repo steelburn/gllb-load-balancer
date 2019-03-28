@@ -9,7 +9,7 @@ echo "It will also fetch and install missing packages (if any)."
 read -p "Press ENTER to continue..." 
 
 SUDO=''
-if (( $EUID != 0 )); then
+if [[ "$EUID" != "0" ]]; then
     SUDO='sudo'
 fi
 

@@ -30,11 +30,11 @@ fi
 
 read -p "Enter download location: " -i "$PWD" DLOCATION
 if [ "$DLOCATION" != "" ]; then
-    $SUDO mkdir -p $DLOCATION
+    mkdir -p $DLOCATION
     echo "Location set to: $DLOCATION"
-    else
+else
     DLOCATION=$PWD/gllb
-   $SUDO mkdir -p $DLOCATION 
+    mkdir -p $DLOCATION 
    echo "Empty response. Location set to: $DLOCATION"
 fi
 
