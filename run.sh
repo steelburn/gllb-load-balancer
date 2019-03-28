@@ -132,7 +132,7 @@ done
 }
 
 main_menu() {
-currentip=`ifconfig eth0 | grep 'inet addr' | awk '{print substr($2,6)}'`
+currentip=`ifconfig | grep 'global' | awk '{print substr($2,6)}'`
 source $CONFIGFILE
 
 dialog --backtitle "Generic Linux Load Balancer" \
