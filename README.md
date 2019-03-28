@@ -13,7 +13,7 @@ REQUIREMENTS
 
 ## QUICK: HOW TO INSTALL
 --------------
-Run this in terminal: wget https://raw.githubusercontent.com/steelburn/gllb-load-balancer/master/install.sh -O install.sh && bash ./install.sh
+Run this in terminal: ``wget https://raw.githubusercontent.com/steelburn/gllb-load-balancer/master/install.sh -O install.sh && PWD=$PWD bash ./install.sh``
 
 
 ## LONGER: HOW TO INSTALL
