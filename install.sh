@@ -17,6 +17,7 @@ if [ "$chksudo" = "0" ]; then
 echo "Enter root passsword to install sudo and other tools."
 su -c "apt-get -y install sudo net-tools git && cat /etc/sudoers $SUDOTEMPFILE > /etc/sudoers"
 fi
+rm $SUDOTEMPFILE
 
 chksudo=`which sudo | wc -l`
 if [ "$chksudo" = "0" ]; then
@@ -27,12 +28,14 @@ else
 SUDO='sudo'
 fi
 
-read -p "Enter download location: " -i $PWD DLOCATION
+read -p "Enter download location: " -i "$PWD" DLOCATION
 if [ "$DLOCATION" != "" ]; then
     $SUDO mkdir -p $DLOCATION
+    echo "Location set to: $DLOCATION"
     else
     DLOCATION=$PWD/gllb
    $SUDO mkdir -p $DLOCATION 
+   echo "Empty response. Location set to: $DLOCATION"
 fi
 
 git clone $GITURL $DLOCATION
