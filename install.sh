@@ -29,7 +29,10 @@ fi
 
 read -p "Enter download location (default: $PWD): " DLOCATION
 if [ "$DLOCATION" != "" ]; then
-    $SUDO mkdir -p $DLOCATION 
+    $SUDO mkdir -p $DLOCATION > /dev/null
+    else
+    DLOCATION=$PWD/gllb
+   $SUDO mkdir -p $DLOCATION > /dev/null    
 fi
 
 git clone $GITURL $DLOCATION
