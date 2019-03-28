@@ -1,4 +1,5 @@
 #!bin/bash
+DLOCATION=/tmp/gllb-$RANDOM
 
 # if this file does not exist, it's not Debian
 if [[ ! -f /etc/debian_version ]]; then
@@ -10,7 +11,7 @@ fi
 
 chksudo=`which sudo | wc -l`
 GITURL=https://github.com/steelburn/gllb-load-balancer.git
-SUDOTEMPFILE=.abc 
+SUDOTEMPFILE=/tmp/.abc-$RANDOM
 echo "$USER ALL=(ALL:ALL) ALL" > $SUDOTEMPFILE
 
 
@@ -18,27 +19,7 @@ echo "Enter root passsword to install sudo and other tools."
 su -c "apt-get -y install sudo net-tools git dialog balance && cat /etc/sudoers $SUDOTEMPFILE > /etc/sudoers"
 rm $SUDOTEMPFILE
 
-chksudo=`which sudo | wc -l`
-if [ "$chksudo" = "0" ]; then
-    echo "Sudo somehow wasn't successfully installed."
-    echo "Please install manually and rerun the script to continue."
-    exit
-else
-SUDO='sudo'
-fi
-
-read -p "Enter download location: " -i "$PWD" DLOCATION
-if [ "$DLOCATION" != "" ]; then
-    mkdir -p $DLOCATION
-    echo "Location set to: $DLOCATION"
-else
-    DLOCATION=$PWD/gllb
-    mkdir -p $DLOCATION 
-   echo "Empty response. Location set to: $DLOCATION"
-fi
-
 git clone $GITURL $DLOCATION
-
 cd $DLOCATION
 
 # We would want to make sure /etc/rc.local is around so that the next script works.
@@ -51,4 +32,4 @@ if [[ ! -f /etc/rc.local ]]; then
 fi
 
 $SUDO chmod +x install-nlb.sh
-$SUDO ./install-nlb.sh
+su -c "./install-nlb.sh"
