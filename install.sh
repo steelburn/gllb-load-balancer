@@ -13,10 +13,9 @@ GITURL=https://github.com/steelburn/gllb-load-balancer.git
 SUDOTEMPFILE=.abc 
 echo "$USER ALL=(ALL:ALL) ALL" > $SUDOTEMPFILE
 
-if [ "$chksudo" = "0" ]; then
+
 echo "Enter root passsword to install sudo and other tools."
-su -c "apt-get -y install sudo net-tools git && cat /etc/sudoers $SUDOTEMPFILE > /etc/sudoers"
-fi
+su -c "apt-get -y install sudo net-tools git dialog balance && cat /etc/sudoers $SUDOTEMPFILE > /etc/sudoers"
 rm $SUDOTEMPFILE
 
 chksudo=`which sudo | wc -l`
