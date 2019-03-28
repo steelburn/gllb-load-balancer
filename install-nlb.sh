@@ -6,10 +6,10 @@
 
 echo "This is a  simple installation script which will copy required files in their respective directories."
 echo "It will also fetch and install missing packages (if any)."
-read -p "Press ENTER to continue..." 
+read -p "Press ENTER to continue..." DUMMY
 
 SUDO=''
-if [[ "$EUID" != "0" ]]; then
+if [ "$EUID" != "0" ]; then
     SUDO='sudo'
 fi
 
