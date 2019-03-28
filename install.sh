@@ -32,7 +32,7 @@ if [ "$DLOCATION" != "" ]; then
     $SUDO mkdir -p $DLOCATION > /dev/null
     else
     DLOCATION=$PWD/gllb
-   $SUDO mkdir -p $DLOCATION > /dev/null    
+   $SUDO mkdir -p $DLOCATION 
 fi
 
 git clone $GITURL $DLOCATION
