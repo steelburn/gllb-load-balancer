@@ -45,7 +45,7 @@ cd $DLOCATION
 # We would want to make sure /etc/rc.local is around so that the next script works.
 if [[ ! -f /etc/rc.local ]]; then
     $SUDO cp rc.local /etc/rc.local 
-    $SUDO cp rc-local.service /etc/systemd/system/rc-local.service 
+#    $SUDO cp rc-local.service /etc/systemd/system/rc-local.service 
     $SUDO chmod +x /etc/rc.local 
     $SUDO systemctl enable rc-local
     $SUDO systemctl start rc-local.service
