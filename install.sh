@@ -28,7 +28,7 @@ SUDO='sudo'
 fi
 
 read -p "Enter download location (default: $PWD): " DLOCATION
-if [ ! "$DLOCATION" = "" ]; then
+if [ "$DLOCATION" != "" ]; then
     $SUDO mkdir -p $DLOCATION 
 fi
 
