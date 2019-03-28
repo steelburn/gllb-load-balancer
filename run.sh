@@ -166,6 +166,12 @@ case $val in
 	esac
  }
 
+
+if (( $EUID != 0 )); then
+    echo "Please run as root."
+	exit
+fi
+
 while true 
 do
 	main_menu
