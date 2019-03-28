@@ -15,36 +15,45 @@ if [ "$EUID" != "0" ]; then
 fi
 
 echo "Installing dependencies..."
-$SUDO apt-get -y install dialog balance 
+apt-get -y install dialog balance 
+
+# We would want to make sure /etc/rc.local is around so that the next script works.
+if [[ ! -f /etc/rc.local ]]; then
+     cp rc.local /etc/rc.local 
+#    $SUDO cp rc-local.service /etc/systemd/system/rc-local.service 
+     chmod +x /etc/rc.local 
+     systemctl enable rc-local
+     systemctl start rc-local.service
+fi
 
 
 echo "Installing GLLB..."
-$SUDO mkdir -p /etc/gllb
-$SUDO mkdir -p /opt/gllb
-$SUDO cp -u config /etc/gllb
-$SUDO cp -u run.sh /opt/gllb/gllb-run
-$SUDO cp -u nlb.sh /opt/gllb/nlb.sh
-$SUDO cp -u reifconfig.sh /opt/gllb/gllb-reifconfig
-$SUDO chmod +x /opt/gllb/nlb.sh
-$SUDO chmod +x /opt/gllb/gllb-run
-$SUDO chmod +x /opt/gllb/gllb-reifconfig
+mkdir -p /etc/gllb
+mkdir -p /opt/gllb
+cp -u config /etc/gllb
+cp -u run.sh /opt/gllb/gllb-run
+cp -u nlb.sh /opt/gllb/nlb.sh
+cp -u reifconfig.sh /opt/gllb/gllb-reifconfig
+chmod +x /opt/gllb/nlb.sh
+chmod +x /opt/gllb/gllb-run
+chmod +x /opt/gllb/gllb-reifconfig
 
-$SUDO ln -fs /opt/gllb/gllb-run /usr/local/sbin
-$SUDO ln -fs /opt/gllb/gllb-reifconfig /usr/local/sbin
+ln -fs /opt/gllb/gllb-run /usr/local/sbin
+ln -fs /opt/gllb/gllb-reifconfig /usr/local/sbin
 
 WC=`grep gllb-run /etc/profile | wc -l`
-if [ "$WC" = "0" ]; then $SUDO echo "gllb-run" >> /etc/profile; fi
+if [ "$WC" = "0" ]; then echo "gllb-run" >> /etc/profile; fi
 
 WC1=`grep gllb-reifconfig /etc/rc.local | wc -l`
 WC2=`grep nlb.sh /etc/rc.local | wc -l`
 
-$SUDO cp /etc/rc.local /tmp/rc.local
-$SUDO cp /etc/rc.local /etc/rc.local.old
+cp /etc/rc.local /tmp/rc.local
+cp /etc/rc.local /etc/rc.local.old
 
-$SUDO head --lines=1 /tmp/rc.local > /etc/rc.local
-if [ "$WC1" = "0" ]; then $SUDO echo "/opt/gllb/gllb-reifconfig" >> /etc/rc.local; fi
-if [ "$WC2" = "0" ]; then $SUDO echo "/opt/gllb/nlb.sh" >> /etc/rc.local; fi
-$SUDO tail --lines=+2 /tmp/rc.local >> /etc/rc.local
+head --lines=1 /tmp/rc.local > /etc/rc.local
+if [ "$WC1" = "0" ]; then echo "/opt/gllb/gllb-reifconfig" >> /etc/rc.local; fi
+if [ "$WC2" = "0" ]; then echo "/opt/gllb/nlb.sh" >> /etc/rc.local; fi
+tail --lines=+2 /tmp/rc.local >> /etc/rc.local
 
 echo "Installation completed. Please run 'gllb-run' to continue with configuration."
 
