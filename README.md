@@ -1,8 +1,8 @@
-############################################
-# Generic Linux Load Balancer
-# by : steelburn
-# @  : steelburn(at)blogspaper(dot)org
-############################################
++-------------------------------------------
+| Generic Linux Load Balancer
+| by : steelburn
+| @  : steelburn(at)blogspaper(dot)org
++-------------------------------------------
 
 REQUIREMENTS
 -----------
